@@ -1,12 +1,12 @@
-import { UserAction, UserModel } from '../actions/UserActions';
+import { UserAction } from '../actions/UserActions';
 
 type UserState = {
-  user: UserModel;
+  data: any;
   error: string | undefined;
 };
 
 const initialState = {
-  user: {} as UserModel,
+  data: {} as any,
   error: undefined,
 };
 
@@ -15,7 +15,7 @@ const HomeReducer = (state: UserState = initialState, action: UserAction) => {
     case 'GET_DATA':
       return {
         ...state,
-        user: action.payload,
+        data: action.payload,
       };
     case 'ON_ERROR':
       return {

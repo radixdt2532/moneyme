@@ -1,13 +1,11 @@
 import axios from 'axios';
 import { Dispatch } from 'react';
+import { GetApi } from '../../../../Network/ApiCall'
 
-export interface UserModel {
-
-}
 
 export interface DataAction {
   readonly type: 'GET_DATA';
-  payload: UserModel;
+  payload: any;
 }
 
 export interface ErrorAction {
@@ -17,13 +15,10 @@ export interface ErrorAction {
 
 export type UserAction = DataAction | ErrorAction;
 
-export const onData = (email: string, password: string) => {
+export const onData = (srchTxt: string) => {
   return async (dispatch: Dispatch<UserAction>) => {
     try {
-      const response = await axios.post<UserModel>(`${''}`, {
-
-      });
-
+      const response = await GetApi(`search?term=${srchTxt}`);
       if (!response) {
         dispatch({
           type: 'ON_ERROR',
@@ -32,7 +27,7 @@ export const onData = (email: string, password: string) => {
       } else {
         dispatch({
           type: 'GET_DATA',
-          payload: response.data,
+          payload: JSON.parse(response).results,
         });
       }
     } catch (error) {
