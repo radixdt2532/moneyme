@@ -18,7 +18,6 @@ import { Images } from '../../../assets/images';
 import { ApplicationState, onData } from '../../Redux';
 import _ from 'lodash';
 import moment from 'moment';
-import { color } from 'react-native-reanimated';
 
 const HomeScreen: React.FC<Props> = ({ navigation }) => {
   const [srchTxt, setSrchTxt] = useState('')
@@ -34,6 +33,9 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
   useEffect(() => {
     setMusicData(data)
     setFilterOption(0)
+    if (data) {
+      _filterData(filterOption)
+    }
   }, [data]);
 
   function _filterData(val) {

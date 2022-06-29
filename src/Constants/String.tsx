@@ -5,5 +5,10 @@ export const String = {
   ColName: 'Album Name',
   RelDate: "Release Date",
   homeSrchTxt: 'Search your favourite artist here...',
-  SearchStr: 'uh-oh! No result for xyz artistname. please try something else.'
+  SearchStr: 'uh-oh! No result for xyz artistname. please try something else.',
+  SongsTxt: 'Price',
+  FollowersTxt: 'Country',
+  FollowingTxt: 'Track Price',
+  Albums: 'Albums',
+  Artist: 'ARTIST'
 };
