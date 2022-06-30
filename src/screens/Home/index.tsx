@@ -35,7 +35,7 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
   useEffect(() => {
     Animated.timing(fadeAnim, {
       toValue: 1,
-      duration: 10000,
+      duration: 7000,
     }).start();
   }, []);
 

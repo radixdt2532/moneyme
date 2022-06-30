@@ -20,11 +20,28 @@
     - Users can search their favourite artist by typing artist name or search field and according to that list will be displayed
     - Users can find list according to album name and release date
 - Detail Screen
-    - We have displayed detail of selected album    
+    - We have displayed detail of selected album  
+- Animations 
+    - Animation deepens visual understanding much more than traditional diagrams.
+    - Animation omits unnecessary verbiage and visuals and allows you to communicate ideas quickly.   
+    - We have added animation on all the pages of app to make application attractive.
+    - We have added FadeIn animation on Splash screen
+    - We have added Spring animation on Intro screen
+    - We have added FadeOut animation on Home Screen
+    - We have added FadeIn and Scale Interpolate animation on Home Detail Screen
+- Test Cases
+    - We have written Jest unit test cases for testing pages of application
+    - On Splash Screen we have written two test cases 
+       - To check whether application crashes on splash screen or not
+       - We have written test case to verify that splash screen will be visible to user until 5 seconds and after that user is  
+         navigating to the intro screen
+       - also we have added snapshot code to get snapshot of testing
+  - On Intro Screen we have written two test cases 
+       - To check whether application crashes on intro screen or not
+       - We have written test cases to verify that on pressing of next arrow button user is navigating to home page or not
 
 ## TODO Tasks
 - Test cases
-- Animations
 
 ## Tech components
 - **React-Native**
@@ -59,4 +76,12 @@
 - **LifeCycle Component**
   - Hooks
   - Functional Components
+- **Unit Testing**
+  - Jest Framework
+  - Offers a CLI tool to control your tests easily
+  - Comes with an interactive mode that automatically runs all affected tests for the code changes you’ve made in your last commit
+  - Provides syntax to test a single test or skip tests with .only and .skip. This feature is useful when debugging individual 
+    tests  
+- **Animations**
+  - The Animated (default feature of react-native) is designed to make animations fluid, powerful, and painless to build and maintain. Animated focuses on declarative relationships between inputs and outputs, configurable transforms in between, and start/stop methods to control time-based animation execution.
 

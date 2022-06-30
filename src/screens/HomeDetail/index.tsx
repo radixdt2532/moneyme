@@ -1,5 +1,5 @@
-import React from 'react';
-import { View, SafeAreaView, TouchableOpacity, ImageBackground, Text, Image } from 'react-native';
+import React, { useEffect } from 'react';
+import { View, SafeAreaView, TouchableOpacity, ImageBackground, Text, Image, Animated } from 'react-native';
 import { Colors } from '../../Constants/Color';
 import styles from './styles';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
@@ -11,45 +11,77 @@ interface Props {
 }
 
 const HomeDetail: React.FC<Props> = ({ route, navigation }) => {
+  const slideUpValue = new Animated.Value(0);
   const { musicDetail } = route.params;
+
+
+  useEffect(() => {
+    _start()
+  }, [])
+
+  const _start = () => {
+    return Animated.parallel([
+      Animated.timing(slideUpValue, {
+        toValue: 1,
+        duration: 500,
+        useNativeDriver: true
+      })
+    ]).start();
+  };
+
   return (
     <SafeAreaView style={styles.container}>
-      <ImageBackground
-        style={styles.musicImage}
-        source={{
-          uri: musicDetail.artworkUrl100
+      <Animated.View
+        style={{
+          opacity: slideUpValue,
+          transform: [
+            {
+              scale: slideUpValue.interpolate({
+                inputRange: [0, 1],
+                outputRange: [0.85, 1]
+              })
+            }
+          ]
+
         }}
       >
-        <TouchableOpacity onPress={() => navigation.navigate('Home')} style={styles.backBtn}>
-          <MaterialIcons name="arrow-back-ios" size={20} color={Colors.white} />
-        </TouchableOpacity>
-        <View style={styles.txtVw}>
-          <Text style={styles.collectionTxt}>{String.Artist}</Text>
-          <Text style={styles.artstTxt}>{musicDetail.artistName}</Text>
-        </View>
-      </ImageBackground>
-      <View style={styles.mainBottomVw}>
-        <View style={styles.mainTabVw}>
-          <View style={styles.tabVw}>
-            <Text style={styles.tabDetailTxt}>{String.FollowersTxt}</Text>
-            <Text style={styles.tabTitleTxt}>{musicDetail.country}</Text>
-          </View>
-          <View style={styles.tabVw}>
-            <Text style={styles.tabDetailTxt}>{String.FollowingTxt}</Text>
-            <Text style={styles.tabTitleTxt}>${musicDetail.trackPrice}</Text>
-          </View>
-        </View>
-        <Text style={styles.albumTxt}>{String.Albums}</Text>
-        <View style={styles.mainCardView}>
-          <Image source={{
+        <ImageBackground
+          style={styles.musicImage}
+          source={{
             uri: musicDetail.artworkUrl100
-          }} style={styles.artImg} resizeMode={"cover"} />
-          <View style={styles.cardTxtVw}>
-            <Text style={styles.cardTitleTxt}>{musicDetail.collectionName}</Text>
-            <Text style={styles.yrTxt}>{moment(musicDetail.releaseDate).format('YYYY')}</Text>
+          }}
+        >
+          <TouchableOpacity onPress={() => navigation.navigate('Home')} style={styles.backBtn}>
+            <MaterialIcons name="arrow-back-ios" size={20} color={Colors.white} />
+          </TouchableOpacity>
+          <View style={styles.txtVw}>
+            <Text style={styles.collectionTxt}>{String.Artist}</Text>
+            <Text style={styles.artstTxt}>{musicDetail.artistName}</Text>
+          </View>
+        </ImageBackground>
+        <View style={styles.mainBottomVw}>
+          <View style={styles.mainTabVw}>
+            <View style={styles.tabVw}>
+              <Text style={styles.tabDetailTxt}>{String.FollowersTxt}</Text>
+              <Text style={styles.tabTitleTxt}>{musicDetail.country}</Text>
+            </View>
+            <View style={styles.tabVw}>
+              <Text style={styles.tabDetailTxt}>{String.FollowingTxt}</Text>
+              <Text style={styles.tabTitleTxt}>${musicDetail.trackPrice ? musicDetail.trackPrice : "0"}</Text>
+            </View>
+          </View>
+          <Text style={styles.albumTxt}>{String.Albums}</Text>
+          <View style={styles.mainCardView}>
+            <Image source={{
+              uri: musicDetail.artworkUrl100
+            }} style={styles.artImg} resizeMode={"cover"} />
+            <View style={styles.cardTxtVw}>
+              <Text style={styles.cardTitleTxt}>{musicDetail.collectionName}</Text>
+              <Text style={styles.yrTxt}>{moment(musicDetail.releaseDate).format('YYYY')}</Text>
+            </View>
           </View>
         </View>
-      </View>
+      </Animated.View>
     </SafeAreaView >
   );
 };
