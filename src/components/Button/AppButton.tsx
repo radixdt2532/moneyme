@@ -3,10 +3,11 @@ import {
   Platform,
   StyleSheet,
   ViewStyle,
-  TouchableOpacity,
+  Animated
 } from 'react-native';
-import { Colors } from '../../Constants/Color';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import { Colors } from '../../Constants/Color';
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
 interface Props {
   text: string | number;
@@ -19,13 +20,42 @@ const AppButton: React.FC<Props> = ({
   containerStyle = {},
   disabled = false,
 }) => {
+
+  const animatedButtonScale = new Animated.Value(1);
+
+  // When button is pressed in, animate the scale to 1.5
+  const onPressIn = () => {
+    Animated.spring(animatedButtonScale, {
+      toValue: 1.5,
+      useNativeDriver: true,
+    }).start();
+  };
+
+  // When button is pressed out, animate the scale back to 1
+  const onPressOut = () => {
+    Animated.spring(animatedButtonScale, {
+      toValue: 1,
+      useNativeDriver: true,
+    }).start();
+  };
+
+  // The animated style for scaling the button within the Animated.View
+  const animatedScaleStyle = {
+    transform: [{ scale: animatedButtonScale }]
+  };
+
+
   return (
-    <TouchableOpacity
-      onPress={onPress}
-      style={[styles.button, containerStyle]}
-      disabled={disabled}>
-      <MaterialIcons name="arrow-forward-ios" size={30} color={Colors.white} />
-    </TouchableOpacity>
+    <Animated.View style={[animatedScaleStyle]}>
+      <TouchableWithoutFeedback
+        onPress={onPress}
+        onPressIn={onPressIn}
+        onPressOut={onPressOut}
+        style={[styles.button, containerStyle]}
+        disabled={disabled}>
+        <MaterialIcons name="arrow-forward-ios" size={30} color={Colors.white} />
+      </TouchableWithoutFeedback>
+    </Animated.View>
   );
 };
 const styles = StyleSheet.create({

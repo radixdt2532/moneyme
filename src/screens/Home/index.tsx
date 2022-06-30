@@ -6,7 +6,8 @@ import {
   TouchableOpacity,
   TextInput,
   FlatList,
-  Image
+  Image,
+  Animated
 } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import styles from './styles';
@@ -23,12 +24,20 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
   const [srchTxt, setSrchTxt] = useState('')
   const [filterOption, setFilterOption] = useState(-1)
   const [musicData, setMusicData] = useState([])
+  const [fadeAnim] = useState(new Animated.Value(0));
 
   const dispatch = useDispatch();
 
   const { data, error } = useSelector(
     (state: ApplicationState) => state.homeReducer,
   );
+
+  useEffect(() => {
+    Animated.timing(fadeAnim, {
+      toValue: 1,
+      duration: 10000,
+    }).start();
+  }, []);
 
   useEffect(() => {
     setMusicData(data)
@@ -110,12 +119,16 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
         </TouchableOpacity>
       </View> : null}
       <View style={styles.flatVw}>
-        {srchTxt ? musicData.length > 0 ? <FlatList
-          data={musicData}
-          numColumns={2}
-          renderItem={renderItem}
-          keyExtractor={(item, index) => index}
-        /> :
+        {srchTxt ? musicData.length > 0 ? <Animated.View
+          style={{
+            opacity: fadeAnim,
+          }}
+        ><FlatList
+            data={musicData}
+            numColumns={2}
+            renderItem={renderItem}
+            keyExtractor={(item, index) => index}
+          /></Animated.View> :
           _renderNoDataView(Images.NoMusic, String.SearchStr, srchTxt)
           :
           _renderNoDataView(Images.HomeMusic, String.homeSrchTxt)}
