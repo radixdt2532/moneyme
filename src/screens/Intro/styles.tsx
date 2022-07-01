@@ -1,5 +1,5 @@
 import { StyleSheet, Platform } from 'react-native';
-import { Colors } from '../../Constants/Color';
+import { Colors } from '../../constants/Color';
 import {
     widthPercentageToDP as wp,
     heightPercentageToDP as hp,

@@ -6,7 +6,7 @@ import { RootStackParamList } from './RootStackParamList';
 
 import Splash from '../screens/Splash';
 import HomeDetail from '../screens/HomeDetail';
-import { Colors } from '../Constants/Color';
+import { Colors } from '../constants/Color';
 
 const Stack = createStackNavigator<RootStackParamList>();
 

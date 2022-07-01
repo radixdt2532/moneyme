@@ -12,11 +12,11 @@ import {
 import { useSelector, useDispatch } from 'react-redux';
 import styles from './styles';
 import { Props } from './IHome';
-import { Colors } from '../../Constants/Color';
-import { String } from '../../Constants/String';
+import { Colors } from '../../constants/Color';
+import { String } from '../../constants/String';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { Images } from '../../../assets/images';
-import { ApplicationState, onData } from '../../Redux';
+import { ApplicationState, onData } from '../../redux';
 import _ from 'lodash';
 import moment from 'moment';
 

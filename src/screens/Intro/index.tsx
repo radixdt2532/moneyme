@@ -7,7 +7,7 @@ import {
 import styles from './styles';
 import { Props } from './IIntro';
 import { Images } from '../../../assets/images';
-import { String } from '../../Constants/String';
+import { String } from '../../constants/String';
 import AppButton from '../../components/Button/AppButton';
 
 const IntroScreen: React.FC<Props> = ({ navigation }) => {

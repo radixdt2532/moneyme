@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { Dispatch } from 'react';
-import { GetApi } from '../../../../Network/ApiCall'
+import { GetApi } from '../../../../network/ApiCall'
 
 
 export interface DataAction {

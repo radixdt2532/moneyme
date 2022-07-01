@@ -6,7 +6,7 @@ import {
   Animated
 } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import { Colors } from '../../Constants/Color';
+import { Colors } from '../../constants/Color';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
 interface Props {
@@ -51,6 +51,7 @@ const AppButton: React.FC<Props> = ({
         onPress={onPress}
         onPressIn={onPressIn}
         onPressOut={onPressOut}
+        accessibilityLabel="app-button"
         style={[styles.button, containerStyle]}
         disabled={disabled}>
         <MaterialIcons name="arrow-forward-ios" size={30} color={Colors.white} />

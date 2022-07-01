@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { View, SafeAreaView, TouchableOpacity, ImageBackground, Text, Image, Animated } from 'react-native';
-import { Colors } from '../../Constants/Color';
+import { Colors } from '../../constants/Color';
 import styles from './styles';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import { String } from '../../Constants/String';
+import { String } from '../../constants/String';
 import moment from 'moment';
 
 interface Props {
@@ -47,6 +47,7 @@ const HomeDetail: React.FC<Props> = ({ route, navigation }) => {
       >
         <ImageBackground
           style={styles.musicImage}
+          resizeMode={'stretch'}
           source={{
             uri: musicDetail.artworkUrl100
           }}

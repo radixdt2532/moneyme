@@ -1,3 +1,3 @@
 export * from './store';
-export * from '../screens/Home/Redux/actions/UserActions';
+export * from '../screens/Home/home_redux/actions/UserActions';
 export * from './CombineReducer';
